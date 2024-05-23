@@ -1,0 +1,86 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>LogupProfesional</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">LogupProfesional</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="formLogupProfesional">
+    <br>
+    <ion-list>
+
+      <ion-item>
+        <ion-input 
+          formControlName="nombres"
+          label="Nombre(s)"
+          fill="solid"
+          labelPlacement="floating"
+          placeholder="Ingrese su(s) nombre(s)">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input 
+          formControlName="apellidos"
+          label="Apellidos"
+          fill="solid"
+          labelPlacement="floating"
+          placeholder="Ingrese sus apellidos">
+        </ion-input>
+      </ion-item>
+            
+      <ion-item>
+        <ion-input 
+          formControlName="correo"
+          label="Correo"
+          type="email"
+          fill="solid"
+          labelPlacement="floating"
+          email>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input 
+          formControlName="especialidad"
+          label="Especialidad"
+          fill="solid"
+          labelPlacement="floating"
+          placeholder="Coloque su especialidad">
+        </ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-input 
+          formControlName="usuario"
+          label="Usuario"
+          fill="solid"
+          labelPlacement="floating"
+          placeholder="Ingrese su usuario">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input 
+          formControlName="password"
+          label="Contraseña"
+          type="password"
+          fill="solid"
+          labelPlacement="floating"
+          placeholder="Ingrese su contraseña">
+        </ion-input>
+      </ion-item>
+
+    </ion-list>
+
+  </form><br>
+
+  <ion-button (click)="registrarProfesional()">Registrar</ion-button>
+
+</ion-content>
