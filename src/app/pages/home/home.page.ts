@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { EstudianteResponse } from 'src/app/interfaces/EstudianteResponse';
+import { EstudianteResponse } from 'src/app/interfaces/intEstudiantes/EstudianteResponse';
 import { EstudianteService } from 'src/app/services/estudiante.service';
 
 @Component({
