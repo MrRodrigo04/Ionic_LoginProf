@@ -23,8 +23,8 @@ export class EstudianteService {
     ('http://localhost:3000/estudiante/register',estudiante);
   }
 
-  loginEstudiante(estLogin: EstudianteLogin){
-    return this.http.post('http://localhost:3000/estudiante/login',estLogin);
+  loginEstudiante(estLogin: EstudianteLogin):Observable<EstudianteResponse>{
+    return this.http.post<EstudianteResponse>('http://localhost:3000/estudiante/login',estLogin);
   }
 
 }
