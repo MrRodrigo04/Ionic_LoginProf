@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ProfesionalResponse } from '../interfaces/ProfesionalResponse';
+import { ProfesionalResponse } from '../interfaces/intProfesional/ProfesionalResponse';
 import { Observable } from 'rxjs';
-import { ProfesionalRequest } from '../interfaces/ProfesionalRequest';
+import { ProfesionalRequest } from '../interfaces/intProfesional/ProfesionalRequest';
 
 @Injectable({
   providedIn: 'root'
