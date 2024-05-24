@@ -1,22 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      UCV TALK
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">UCV TALK</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <video autoplay muted loop id="video-background">
+    <source src="../assets/Videos/fondo1.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
 
-  <ion-button (click)="goToLogin()">Iniciar sesión</ion-button>
-  <ion-button (click)="goToLogup()">Registrarte</ion-button> 
-
-  <!-- <ion-grid>
+  <div class="button-container">
+    <ion-button expand="block" (click)="goToLogin()">Iniciar sesión</ion-button>
+    <ion-button expand="block" (click)="goToLogup()">Registrarte</ion-button>
+  </div>
+  
+  <ion-grid>
     <ion-row>
       <ion-col *ngFor = "let estudiante of estudiantes; let i = index">
 
@@ -41,6 +34,7 @@
 
       </ion-col>
     </ion-row>
-  </ion-grid> -->
+  </ion-grid>
 
 </ion-content>
+
