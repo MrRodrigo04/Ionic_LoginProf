@@ -1,5 +1,5 @@
 <ion-content [fullscreen]="true">
-  <video autoplay muted loop id="video-background" preload="auto" oncanplay="hideLoadingMessage()">
+  <video autoplay muted loop id="video-background" preload="auto">
     <source src="../assets/Videos/fondo1.mp4" type="video/mp4">
     Tu navegador no soporta la etiqueta de video.
   </video>
@@ -10,7 +10,7 @@
     <ion-button expand="block" (click)="goToLogup()">Registrarte</ion-button>
   </div>
   
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col *ngFor = "let estudiante of estudiantes; let i = index">
 
@@ -35,7 +35,7 @@
 
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 
 </ion-content>
 
