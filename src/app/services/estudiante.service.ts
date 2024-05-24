@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { EstudianteResponse } from '../interfaces/EstudianteResponse';
-import { EstudianteRequest } from '../interfaces/EstudianteRequest';
+import { EstudianteResponse } from '../interfaces/intEstudiantes/EstudianteResponse';
+import { EstudianteRequest } from '../interfaces/intEstudiantes/EstudianteRequest';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { EstudianteLogin } from '../interfaces/intEstudiantes/EstudianteLogin';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class EstudianteService {
   postEstudiante(estudiante: EstudianteRequest): Observable<EstudianteRequest>{
     return this.http.post<EstudianteRequest>
     ('http://localhost:3000/estudiante/register',estudiante);
+  }
+
+  loginEstudiante(estLogin: EstudianteLogin):Observable<EstudianteResponse>{
+    return this.http.post<EstudianteResponse>('http://localhost:3000/estudiante/login',estLogin);
   }
 
 }
