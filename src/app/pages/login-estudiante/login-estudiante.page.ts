@@ -57,6 +57,8 @@ export class LoginEstudiantePage implements OnInit {
 
       if(resp.Usuario && resp.Contra){//¿La respuesta tiene estos campos?
 
+        //Borrado de campos
+        this.formLoginEstudiante.reset();
         this.navCtrl.navigateForward('/seleccion-chat'); //Si es así, redirección a pagina
 
       }else{
