@@ -1,19 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>LOGUP</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">LOGUP</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <video autoplay muted loop id="video-background" preload="auto" oncanplay="hideLoadingMessage()">
+    <source src="../assets/Videos/fondo3.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
 
-  <div id="container">
-    <ion-button (click)="goToLogupEstudiante()">Estudiante</ion-button>
-    <ion-button (click)="goToLogupProfesional()">Profesional</ion-button> 
+  <div class = "button-container">
+    <ion-button expand= "block" (click)="goToLogupEstudiante()">Estudiante</ion-button>
+    <ion-button expand= "block" (click)="goToLogupProfesional()">Profesional</ion-button> 
   </div>
 
 </ion-content>

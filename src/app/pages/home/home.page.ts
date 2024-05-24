@@ -10,7 +10,7 @@ import { EstudianteService } from 'src/app/services/estudiante.service';
 })
 export class HomePage implements OnInit{
 
-  // public estudiantes: EstudianteResponse[] = [];
+  public estudiantes: EstudianteResponse[] = [];
   
   constructor(
     private navCtrl: NavController,
@@ -26,8 +26,11 @@ export class HomePage implements OnInit{
   }
 
   ngOnInit() {
-    // this.estService.getEstudiantes()
-    // .subscribe( estudiantes => this.estudiantes.push(...estudiantes));
+    this.estService.getEstudiantes()
+     .subscribe( estudiantes => this.estudiantes.push(...estudiantes));
   }
 
 }
+
+
+
