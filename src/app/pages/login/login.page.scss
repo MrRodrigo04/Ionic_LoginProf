@@ -28,3 +28,14 @@
     margin: 20px;
     width: 65%;
     }
+
+    
+.button-container ion-button.button-solid {
+  --background: rgb(52, 48, 165) !important; /* Sobrescribe el color de fondo a rojo */
+  --color: white !important; /* Sobrescribe el color del texto a blanco */
+  }
+  
+  .button-container ion-button.button-solid:hover {
+  --background: rgb(255, 0, 0) !important; /* Cambia el color de fondo al pasar el mouse */
+  }
+  
