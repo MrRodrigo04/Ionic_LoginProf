@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chats Pendientes</ion-title>
+    <ion-progress-bar id="progress-bar" type="determinate" value="0"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <video autoplay muted loop id="video-background" preload="auto">
+    <source src="../assets/Videos/fondo7.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
+  
+  <ion-list>
+    <ion-item *ngFor="let estudiante of estudiantes; let i = index" lines="none" button (click)="presentActionSheet(estudiante)">
+      <ion-thumbnail slot="start">
+        <img alt="Profile Picture" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ estudiante.Usuario }}</h2>
+        <p>{{ estudiante.Correo }}</p>
+        <p>Último mensaje</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
