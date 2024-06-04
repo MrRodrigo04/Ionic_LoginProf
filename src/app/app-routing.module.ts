@@ -37,11 +37,11 @@ const routes: Routes = [
   },
   {
     path: 'seleccion-chat',
-    loadChildren: () => import('./pages/seleccion-chat/seleccion-chat.module').then( m => m.SeleccionChatPageModule)
+    loadChildren: () => import('./pages/seleccion-chat_A/seleccion-chat.module').then( m => m.SeleccionChatPageModule)
   },
   {
     path: 'chat-pendiente',
-    loadChildren: () => import('./pages/chat-pendiente/chat-pendiente.module').then( m => m.ChatPendientePageModule)
+    loadChildren: () => import('./pages/chat-pendiente_P/chat-pendiente.module').then( m => m.ChatPendientePageModule)
   },
 ];
 

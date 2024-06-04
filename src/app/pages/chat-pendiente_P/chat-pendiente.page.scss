@@ -1,0 +1,40 @@
+ion-header {
+    position: relative;
+    z-index: 1;
+  }
+
+  ion-item {
+    --inner-padding-end: 0px;
+    --inner-padding-start: 0px;
+    border-bottom: none;
+    background: none;
+    transition: background 0.3s ease;
+  }
+
+  ion-item[button]:hover, ion-item[button]:focus, ion-item[button]:active {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  ion-label h2 {
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  ion-label p {
+    margin: 0;
+    color: #888;
+  }
+
+  #video-background {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+  }
+
+  .hidden {
+    display: none !important;
+  }

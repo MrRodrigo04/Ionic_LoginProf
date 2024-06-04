@@ -8,10 +8,8 @@ import { EstudianteService } from 'src/app/services/estudiante.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage {
 
-  public estudiantes: EstudianteResponse[] = [];
-  
   constructor(
     private navCtrl: NavController,
     private estService: EstudianteService
@@ -25,10 +23,6 @@ export class HomePage implements OnInit{
     this.navCtrl.navigateForward('/logup');
   }
 
-  ngOnInit() {
-    this.estService.getEstudiantes()
-     .subscribe( estudiantes => this.estudiantes.push(...estudiantes));
-  }
 
 }
 

@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chats Pendientes</ion-title>
+    <ion-progress-bar id="progress-bar" type="determinate" value="0"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <video autoplay muted loop id="video-background" preload="auto">
+    <source src="../assets/Videos/fondo7.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
+
+  <ion-list>
+    <ion-item *ngFor="let profesional of Profesionales; let i = index" lines="none" button (click)="presentActionSheet(profesional)">
+      <div class="profile-container">
+        <div class="profile-info">
+          <h2>{{ profesional.Nombre }} {{ profesional.Apellido }}</h2>
+          <p> Usuario: {{ profesional.Usuario}}</p>
+        </div>
+        <div class="profile-details">
+          <ion-thumbnail class="profile-image">
+            <img alt="Profile Picture" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+          </ion-thumbnail>
+          <div class="profile-text">
+            <p>Calificación: </p>
+            <p>Especialidad: {{ profesional.Especialidad }}</p>
+          </div>
+        </div>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
