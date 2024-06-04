@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>chat-room</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-grid>
+    <ion-row *ngFor="let message of messages">
+
+      <ion-col size="9" *ngIf="message.from !== nickname" class="message"
+               [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
+        <span class="user_name">{{ message.from }}:</span><br>
+        <span>{{ message.text }}</span>
+        <div class="time">{{message.created | date:'dd.MM hh:MM'}}</div>
+      </ion-col>
+
+      <ion-col offset="3" size="9" *ngIf="message.from === nickname" class="message"
+               [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
+        <span class="user_name">{{ message.from }}:</span><br>
+        <span>{{ message.text }}</span>
+        <div class="time">{{message.created | date:'dd.MM hh:MM'}}</div>
+      </ion-col> 
+
+    </ion-row>
+  </ion-grid>-->
+</ion-content>

@@ -11,6 +11,7 @@ import { ProfesionalService } from 'src/app/services/profesional.service';
 export class SeleccionChatPage implements OnInit {
 
   public Profesionales : ProfesionalResponse [] = [];
+
   constructor(
     private navCtrl: NavController,
     private estService: ProfesionalService,
@@ -75,12 +76,13 @@ export class SeleccionChatPage implements OnInit {
 
   startChat(Profesional: ProfesionalResponse) {
     // Lógica para iniciar chat
+    this.navCtrl.navigateForward('/chat-room');
     console.log('Iniciar chat con:', Profesional);
   }
 
   diagnose(Profesional: ProfesionalResponse) {
-    // Lógica para diagnosticar
-    console.log('Diagnosticar a:', Profesional);
+    // Lógica para Calificar
+    console.log('Calificar a:', Profesional);
   }
 }
 

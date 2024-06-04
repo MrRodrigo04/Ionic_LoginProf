@@ -75,6 +75,7 @@ export class ChatPendientePage implements OnInit {
 
   startChat(estudiante: EstudianteResponse) {
     // Lógica para iniciar chat
+    this.navCtrl.navigateForward('/chat-room');
     console.log('Iniciar chat con:', estudiante);
   }
 

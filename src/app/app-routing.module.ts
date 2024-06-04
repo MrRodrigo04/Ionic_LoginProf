@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'chat-pendiente',
     loadChildren: () => import('./pages/chat-pendiente_P/chat-pendiente.module').then( m => m.ChatPendientePageModule)
+  },  {
+    path: 'chat-room',
+    loadChildren: () => import('./pages/chat-room/chat-room.module').then( m => m.ChatRoomPageModule)
   },
+
 ];
 
 @NgModule({
