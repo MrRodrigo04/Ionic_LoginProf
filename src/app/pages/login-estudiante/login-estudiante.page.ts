@@ -57,9 +57,10 @@ export class LoginEstudiantePage implements OnInit {
 
       if(resp.Usuario && resp.Contra){//¿La respuesta tiene estos campos?
 
-        //Borrado de campos
-        this.formLoginEstudiante.reset();
-        this.navCtrl.navigateForward('/seleccion-chat'); //Si es así, redirección a pagina
+        //Guardar usuario en local storage
+        localStorage.setItem('estu', JSON.stringify(logEstudiante.Usuario));
+        this.navCtrl.navigateForward('seleccion-chat'); //Navegar a siguiente pagina
+        this.formLoginEstudiante.reset(); //Resetear campos de login
 
       }else{
         throw new Error('Usuario no encontrado');

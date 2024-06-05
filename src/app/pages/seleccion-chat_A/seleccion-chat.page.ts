@@ -3,6 +3,8 @@ import { NavController, ActionSheetController } from '@ionic/angular';
 import { ProfesionalResponse } from 'src/app/interfaces/intProfesional/ProfesionalResponse';
 import { ProfesionalService } from 'src/app/services/profesional.service';
 
+import { Socket } from 'ngx-socket-io';
+
 @Component({
   selector: 'app-seleccion-chat',
   templateUrl: './seleccion-chat.page.html',
@@ -15,6 +17,7 @@ export class SeleccionChatPage implements OnInit {
   constructor(
     private navCtrl: NavController,
     private estService: ProfesionalService,
+    private socket: Socket,
     private actionSheetCtrl: ActionSheetController
   ) { }
 
@@ -75,8 +78,13 @@ export class SeleccionChatPage implements OnInit {
   }
 
   startChat(Profesional: ProfesionalResponse) {
+    //Obtener estudiante logueado de local storage
+    const estudiante = localStorage.getItem('estu');
+    
     // Lógica para iniciar chat
-    this.navCtrl.navigateForward('/chat-room');
+    this.socket.connect();
+    this.socket.emit('set-nickname', estudiante);
+    this.navCtrl.navigateForward(`chat-room`) ;
     console.log('Iniciar chat con:', Profesional);
   }
 
