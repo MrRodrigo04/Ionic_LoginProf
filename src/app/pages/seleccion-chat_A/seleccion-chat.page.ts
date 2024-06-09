@@ -98,7 +98,11 @@ export class SeleccionChatPage implements OnInit {
     console.log(this.Estudiante[1])
   }
 
+
+  //Funcion para calificar a un profesional
   async rate(Profesional: ProfesionalResponse) {
+
+    //Alerta de entrada
     const alert = await this.alertCtrl.create({
       header: 'Valorice la atencion',
       inputs: [

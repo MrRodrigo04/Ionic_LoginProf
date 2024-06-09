@@ -12,6 +12,7 @@ import { Message } from 'src/app/interfaces/intChat/Message';
 })
 export class ChatRoomPage implements OnInit, OnDestroy{
 
+  public Usuario = [];
   messages: Message[] = [];
   nickname: string | null = '';
   message: string = '';
@@ -23,7 +24,12 @@ export class ChatRoomPage implements OnInit, OnDestroy{
   ) { }
 
   ngOnInit() {
-    this.nickname = localStorage.getItem('estu');
+    const estu= localStorage.getItem('estu');
+    if (estu){
+      this.Usuario = JSON.parse(estu);
+    }
+
+    this.nickname = this.Usuario[1];    
 
     this.socket.on('message', (message: Message) => this.messages.push(message));
 
