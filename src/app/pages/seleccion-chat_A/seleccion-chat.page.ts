@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ActionSheetController } from '@ionic/angular';
+import { NavController, ActionSheetController, AlertController } from '@ionic/angular';
 import { ProfesionalResponse } from 'src/app/interfaces/intProfesional/ProfesionalResponse';
 import { ProfesionalService } from 'src/app/services/profesional.service';
 
@@ -18,7 +18,8 @@ export class SeleccionChatPage implements OnInit {
     private navCtrl: NavController,
     private estService: ProfesionalService,
     private socket: Socket,
-    private actionSheetCtrl: ActionSheetController
+    private actionSheetCtrl: ActionSheetController,
+    private alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
@@ -61,7 +62,7 @@ export class SeleccionChatPage implements OnInit {
         {
           text: 'Calificar',
           handler: () => {
-            this.diagnose(Profesional);
+            this.rate(Profesional);
           }
         },
         {
@@ -88,8 +89,23 @@ export class SeleccionChatPage implements OnInit {
     console.log('Iniciar chat con:', Profesional);
   }
 
-  diagnose(Profesional: ProfesionalResponse) {
-    // Lógica para Calificar
+  async rate(Profesional: ProfesionalResponse) {
+    // Componente para calificar
+    const alert = await this.alertCtrl.create({
+      header: 'Valorice la atencion',
+      inputs: [
+        {
+          type: 'number',
+          name: 'Calificacion',
+          placeholder: '1-5',
+          min: 1,
+          max: 5,
+        },
+      ],
+      buttons: ['OK'],
+    });
+
+    await alert.present();
     console.log('Calificar a:', Profesional);
   }
 }
