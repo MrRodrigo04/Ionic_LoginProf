@@ -59,7 +59,7 @@ export class LoginEstudiantePage implements OnInit {
 
         //Guardar usuario en local storage
         localStorage.setItem('estu', JSON.stringify(logEstudiante.Usuario));
-        this.navCtrl.navigateForward('seleccion-chat'); //Navegar a siguiente pagina
+        this.navCtrl.navigateForward('tab-estu/seleccion-chat'); //Navegar a siguiente pagina
         this.formLoginEstudiante.reset(); //Resetear campos de login
 
       }else{

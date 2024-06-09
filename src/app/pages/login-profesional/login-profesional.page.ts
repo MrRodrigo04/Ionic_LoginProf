@@ -61,7 +61,7 @@ export class LoginProfesionalPage implements OnInit {
 
         //Borrado de campos
         this.formLoginProfesional.reset();
-        this.navCtrl.navigateForward('/chat-pendiente'); //Si es así, redirección a pagina
+        this.navCtrl.navigateForward('tab-profes/chat-pendiente'); //Si es así, redirección a pagina
         
       }else{
         throw new Error('Usuario no encontrado');
