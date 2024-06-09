@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ActionSheetController, AlertController } from '@ionic/angular';
 import { ProfesionalResponse } from 'src/app/interfaces/intProfesional/ProfesionalResponse';
 import { ProfesionalService } from 'src/app/services/profesional.service';
+import { CalificarProfesService } from 'src/app/services/calificar-profes.service';
 
 import { Socket } from 'ngx-socket-io';
 
@@ -13,16 +14,25 @@ import { Socket } from 'ngx-socket-io';
 export class SeleccionChatPage implements OnInit {
 
   public Profesionales : ProfesionalResponse [] = [];
+  public Estudiante = [];
 
   constructor(
     private navCtrl: NavController,
     private estService: ProfesionalService,
+    private calService: CalificarProfesService,
     private socket: Socket,
     private actionSheetCtrl: ActionSheetController,
     private alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
+    //Obtener estudiante logueado de local storage   
+    const estu= localStorage.getItem('estu');
+    if (estu){
+      this.Estudiante = JSON.parse(estu);
+    }
+    
+    //Servicio de profesional (para listar profesionales)
     this.estService.getProfesional()
     .subscribe(Profesional => this.Profesionales.push(...Profesional));
     this.startProgressBar(5);
@@ -79,24 +89,22 @@ export class SeleccionChatPage implements OnInit {
   }
 
   startChat(Profesional: ProfesionalResponse) {
-    //Obtener estudiante logueado de local storage
-    const estudiante = localStorage.getItem('estu');
-    
     // Lógica para iniciar chat
     this.socket.connect();
-    this.socket.emit('set-nickname', estudiante);
+    this.socket.emit('set-nickname', this.Estudiante[1]);
     this.navCtrl.navigateForward(`chat-room`) ;
     console.log('Iniciar chat con:', Profesional);
+    console.log("En ",this.Estudiante[0])
+    console.log(this.Estudiante[1])
   }
 
   async rate(Profesional: ProfesionalResponse) {
-    // Componente para calificar
     const alert = await this.alertCtrl.create({
       header: 'Valorice la atencion',
       inputs: [
         {
-          type: 'number',
           name: 'Calificacion',
+          type: 'number',
           placeholder: '1-5',
           min: 1,
           max: 5,
@@ -106,6 +114,22 @@ export class SeleccionChatPage implements OnInit {
     });
 
     await alert.present();
+    const { data } = await alert.onDidDismiss();
+    const {Calificacion} = data.values;
+    if (data && data.values){
+           
+      var Califica = {
+        Id_EstudianteRegis: this.Estudiante[0],
+        Id_ProfesRegis: Profesional.Id_ProfesRegis,
+        Calificacion: parseInt(Calificacion)
+      }
+
+      this.calService.postCalificar(Califica)
+      .subscribe( resp => {
+        console.log(resp);
+      });
+    }
+
     console.log('Calificar a:', Profesional);
   }
 }
