@@ -10,4 +10,43 @@
       <ion-title size="large">diagnostico</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <form [formGroup]="formDiagnostico">
+    
+    <ion-item>
+      <ion-input 
+        formControlName="userEstu"
+        label="Usuario"
+        labelPlacement="floating"
+        placeholder="Ingrese su usuario">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-select 
+        formControlName="categoria"
+        label="Categoria" 
+        labelPlacement="floating">
+        <ion-select-option 
+          *ngFor="let categoria of Categorias; let i = index" 
+          value={{categoria.Id_Categoria}}>{{categoria.Nombre_Cat}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea 
+        formControlName="diagnostico"
+        label="Diagnostico"
+        type="textarea"
+        labelPlacement="floating"
+        placeholder="Escriba el diagnostico">
+      </ion-textarea>
+    </ion-item>
+    
+
+  </form><br>
+
+  <ion-button (click)="generarDiagnostico()">Registrar</ion-button>
+
 </ion-content>
