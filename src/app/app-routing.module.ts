@@ -46,7 +46,11 @@ const routes: Routes = [
   {
     path: 'tab-profes',
     loadChildren: () => import('./pages/tab-profes/tab-profes.module').then( m => m.TabProfesPageModule)
+  },  {
+    path: 'diagnostico',
+    loadChildren: () => import('./pages/diagnostico/diagnostico.module').then( m => m.DiagnosticoPageModule)
   },
+
 
 ];
 
