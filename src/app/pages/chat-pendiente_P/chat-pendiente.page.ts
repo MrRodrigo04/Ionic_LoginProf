@@ -11,6 +11,8 @@ import { EstudianteService } from 'src/app/services/estudiante.service';
 export class ChatPendientePage implements OnInit {
 
   public estudiantes: EstudianteResponse[] = [];
+  public Categorias = [];
+  public Profesional = [];
 
   constructor(
     private navCtrl: NavController,
