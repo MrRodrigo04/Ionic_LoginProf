@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, NavController, ToastController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ReporteEstuService } from 'src/app/services/reporte-estu.service';

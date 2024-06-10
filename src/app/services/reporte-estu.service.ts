@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ResporEstuRequest } from '../interfaces/intReportEstu/ReporEstuRequest';
-import { ResporEstuResponse } from '../interfaces/intReportEstu/ReporEstuResponse';
+import { ReporEstuRequest } from '../interfaces/intReportEstu/ReporEstuRequest';
+import { ReporEstuResponse } from '../interfaces/intReportEstu/ReporEstuResponse';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,13 +11,13 @@ export class ReporteEstuService {
 
   constructor(private http: HttpClient) { }
 
-  getReporEstu(): Observable<ResporEstuResponse[]>{
-    return this.http.get<ResporEstuResponse[]>
+  getReporEstu(): Observable<ReporEstuResponse[]>{
+    return this.http.get<ReporEstuResponse[]>
     ('http://localhost:3000/repor-estudiante');
   }
 
-  postReporEstu(reporte: ResporEstuRequest): Observable<ResporEstuRequest>{
-    return this.http.post<ResporEstuRequest>
+  postReporEstu(reporte: ReporEstuRequest): Observable<ReporEstuRequest>{
+    return this.http.post<ReporEstuRequest>
     ('http://localhost:3000/repor-estudiante/nuevo_reporte',reporte);
   }
   

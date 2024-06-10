@@ -10,4 +10,32 @@
       <ion-title size="large">report_profes</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <form [formGroup]="formReporPro">
+    <ion-list>
+
+      <ion-item>
+        <ion-input 
+          formControlName="asunto"
+          label="Asunto"
+          labelPlacement="floating"
+          placeholder="Resuma el asunto">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea 
+          formControlName="descripcion"
+          label="Descripcion"
+          type="textarea"
+          labelPlacement="floating"
+          placeholder="Describa su reporte">
+        </ion-textarea>
+      </ion-item>
+
+    </ion-list>
+  </form>
+
+  <ion-button expand="block" color="primary" (click)="NuevoReportePro()">Generar</ion-button>
+
 </ion-content>

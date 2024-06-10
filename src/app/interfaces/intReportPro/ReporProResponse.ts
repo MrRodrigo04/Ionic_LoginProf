@@ -1,8 +1,7 @@
-export interface ReporEstuResponse{
+export interface ReporProResponse{
     Id_Reporte: number;
     Asunto: string;
     Descripcion: string;
     Cap_Evidencia?: Uint8Array;
-    Anonimo_Revelar?: string;
-    Id_EstudianteRegis: number;
+    Id_ProfesRegis: number;
 }
