@@ -15,6 +15,7 @@ export class DiagnosticoPage implements OnInit {
   formDiagnostico: FormGroup;
   public Categorias : CategoriaResponse [] = [];
   public Estudiante = [];
+  public Profesional = [];
 
   constructor(
     private navCtrl: NavController,
@@ -41,12 +42,20 @@ export class DiagnosticoPage implements OnInit {
     if (estu){
       this.Estudiante = JSON.parse(estu);
     }
+
+    //Obtener datos de profesional logueado
+    const pro = localStorage.getItem('pro');
+    if (pro){
+      this.Profesional = JSON.parse(pro);
+    }
   }
 
   async generarDiagnostico(){
 
+    //Obtener valores de form
     var form = this.formDiagnostico.value;
 
+    //Validaciones de form
     if(this.formDiagnostico.invalid){
       const alert = await this.alertCrl.create({
         header: 'Faltan datos',
@@ -57,7 +66,34 @@ export class DiagnosticoPage implements OnInit {
       return;
     }
 
+    //JSON para nuevo diagnostico
+    var diag = {
+      Est_Usuario: form.userEstu,
+      Id_Categoria: parseInt(form.categoria),
+      Diagnostico: form.diagnostico,
+      Id_EstudianteRegis: this.Estudiante[0],
+      Id_ProfesRegis: this.Profesional[0]
+    }
 
+    //Servicio POST
+    this.diagService.postDiagnostico(diag)
+    .subscribe(resp => {
+      console.log(resp);
+    })
+
+    //TOAST de confirmación
+    const toast = await this.toastCtrl.create({
+      message: 'Diagnostico registrado',
+      duration: 1500,
+      position: 'bottom'
+    });
+    await toast.present();
+
+    //Ahorra memoria eliminando datos de estuTemp
+    localStorage.removeItem('estuTemp');
+
+    //Redirección a atrás
+    this.navCtrl.navigateBack('tab-profes/chat-pendiente');  
   }
 
 }
