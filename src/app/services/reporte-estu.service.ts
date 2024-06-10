@@ -11,12 +11,12 @@ export class ReporteEstuService {
 
   constructor(private http: HttpClient) { }
 
-  getEstudiantes(): Observable<ResporEstuResponse[]>{
+  getReporEstu(): Observable<ResporEstuResponse[]>{
     return this.http.get<ResporEstuResponse[]>
     ('http://localhost:3000/repor-estudiante');
   }
 
-  postCalificar(reporte: ResporEstuRequest): Observable<ResporEstuRequest>{
+  postReporEstu(reporte: ResporEstuRequest): Observable<ResporEstuRequest>{
     return this.http.post<ResporEstuRequest>
     ('http://localhost:3000/repor-estudiante/nuevo_reporte',reporte);
   }
