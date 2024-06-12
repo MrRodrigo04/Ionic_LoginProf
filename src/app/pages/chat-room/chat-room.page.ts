@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Socket } from 'ngx-socket-io';
 import { ToastController } from '@ionic/angular';
 import { UserData } from '../../interfaces/intChat/UserData';
-import { Message } from 'src/app/interfaces/intChat/Message';
+import { Message } from '../../interfaces/intChat/Message';
 
 @Component({
   selector: 'app-chat-room',
@@ -12,7 +12,8 @@ import { Message } from 'src/app/interfaces/intChat/Message';
 })
 export class ChatRoomPage implements OnInit, OnDestroy{
 
-  public Usuario = [];
+  public Estudiante= [];
+  public Profesional = [];
   messages: Message[] = [];
   nickname: string | null = '';
   message: string = '';
@@ -24,12 +25,8 @@ export class ChatRoomPage implements OnInit, OnDestroy{
   ) { }
 
   ngOnInit() {
-    const estu= localStorage.getItem('estu');
-    if (estu){
-      this.Usuario = JSON.parse(estu);
-    }
 
-    this.nickname = this.Usuario[1];    
+    this.putNickname()
 
     this.socket.on('message', (message: Message) => this.messages.push(message));
 
@@ -57,5 +54,25 @@ export class ChatRoomPage implements OnInit, OnDestroy{
       duration: 2000
     });
     toast.present();
+  }
+
+  putNickname (){
+    const estu = localStorage.getItem('estu');
+      if(estu){
+        this.Estudiante = JSON.parse(estu)
+      }
+      if(estu && this.nickname !== this.Estudiante[1] ){
+       this.nickname = this.Estudiante[1];
+       return;
+      }
+
+  const pro = localStorage.getItem('pro');
+    if(pro){
+      this.Profesional = JSON.parse(pro);
+    }
+    if(pro && this.nickname !== this.Profesional[1] ){
+      this.nickname = this.Profesional[1];
+      return;
+     }
   }
 }

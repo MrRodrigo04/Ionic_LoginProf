@@ -23,7 +23,7 @@ export class ChatPendientePage implements OnInit {
 
   ngOnInit() {
     //Obtener profesional logueado
-    const pro= localStorage.getItem('pro');
+    const pro = localStorage.getItem('pro');
     if (pro){
       this.Profesional = JSON.parse(pro);
     }
@@ -85,7 +85,10 @@ export class ChatPendientePage implements OnInit {
 
   startChat(estudiante: EstudianteResponse) {
     // Lógica para iniciar chat
-    this.navCtrl.navigateForward('/chat-room');
+    this.socket.connect();
+    this.socket.emit('set-nickname', this.Profesional[1])
+    this.navCtrl.navigateForward('chat-room');
+    console.log("Pro ID: ",this.Profesional[0]);
     console.log('Iniciar chat con:', estudiante);
   }
 

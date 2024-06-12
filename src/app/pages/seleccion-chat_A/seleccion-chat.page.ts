@@ -90,17 +90,19 @@ export class SeleccionChatPage implements OnInit {
 
   startChat(Profesional: ProfesionalResponse) {
     // Lógica para iniciar chat
+    localStorage.setItem('user-chat',JSON.stringify(this.Estudiante[1]));
     this.socket.connect();
     this.socket.emit('set-nickname', this.Estudiante[1]);
     this.navCtrl.navigateForward(`chat-room`) ;
+    console.log("EstuID: ",this.Estudiante[0])
     console.log('Iniciar chat con:', Profesional);
-    console.log("En ",this.Estudiante[0])
-    console.log(this.Estudiante[1])
   }
 
 
   //Funcion para calificar a un profesional
   async rate(Profesional: ProfesionalResponse) {
+
+    console.log('Calificar a:', Profesional);
 
     //Alerta de entrada
     const alert = await this.alertCtrl.create({
@@ -133,8 +135,6 @@ export class SeleccionChatPage implements OnInit {
         console.log(resp);
       });
     }
-
-    console.log('Calificar a:', Profesional);
   }
 }
 
