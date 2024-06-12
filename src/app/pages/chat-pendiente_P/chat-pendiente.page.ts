@@ -85,6 +85,7 @@ export class ChatPendientePage implements OnInit {
 
   startChat(estudiante: EstudianteResponse) {
     // Lógica para iniciar chat
+    localStorage.setItem('user-chat',JSON.stringify(this.Profesional[1]));
     this.socket.connect();
     this.socket.emit('set-nickname', this.Profesional[1])
     this.navCtrl.navigateForward('chat-room');
