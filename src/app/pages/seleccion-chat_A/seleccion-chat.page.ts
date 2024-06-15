@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ActionSheetController } from '@ionic/angular';
+import { NavController, ActionSheetController, AlertController } from '@ionic/angular';
 import { ProfesionalResponse } from 'src/app/interfaces/intProfesional/ProfesionalResponse';
 import { ProfesionalService } from 'src/app/services/profesional.service';
+import { CalificarProfesService } from 'src/app/services/calificar-profes.service';
+
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-seleccion-chat',
@@ -11,13 +14,25 @@ import { ProfesionalService } from 'src/app/services/profesional.service';
 export class SeleccionChatPage implements OnInit {
 
   public Profesionales : ProfesionalResponse [] = [];
+  public Estudiante = [];
+
   constructor(
     private navCtrl: NavController,
     private estService: ProfesionalService,
-    private actionSheetCtrl: ActionSheetController
+    private calService: CalificarProfesService,
+    private socket: Socket,
+    private actionSheetCtrl: ActionSheetController,
+    private alertCtrl: AlertController
   ) { }
 
   ngOnInit() {
+    //Obtener estudiante logueado de local storage   
+    const estu= localStorage.getItem('estu');
+    if (estu){
+      this.Estudiante = JSON.parse(estu);
+    }
+    
+    //Servicio de profesional (para listar profesionales)
     this.estService.getProfesional()
     .subscribe(Profesional => this.Profesionales.push(...Profesional));
     this.startProgressBar(5);
@@ -57,7 +72,7 @@ export class SeleccionChatPage implements OnInit {
         {
           text: 'Calificar',
           handler: () => {
-            this.diagnose(Profesional);
+            this.rate(Profesional);
           }
         },
         {
@@ -75,12 +90,51 @@ export class SeleccionChatPage implements OnInit {
 
   startChat(Profesional: ProfesionalResponse) {
     // Lógica para iniciar chat
+    localStorage.setItem('user-chat',JSON.stringify(this.Estudiante[1]));
+    this.socket.connect();
+    this.socket.emit('set-nickname', this.Estudiante[1]);
+    this.navCtrl.navigateForward(`chat-room`) ;
+    console.log("EstuID: ",this.Estudiante[0])
     console.log('Iniciar chat con:', Profesional);
   }
 
-  diagnose(Profesional: ProfesionalResponse) {
-    // Lógica para diagnosticar
-    console.log('Diagnosticar a:', Profesional);
+
+  //Funcion para calificar a un profesional
+  async rate(Profesional: ProfesionalResponse) {
+
+    console.log('Calificar a:', Profesional);
+
+    //Alerta de entrada
+    const alert = await this.alertCtrl.create({
+      header: 'Valorice la atencion',
+      inputs: [
+        {
+          name: 'Calificacion',
+          type: 'number',
+          placeholder: '1-5',
+          min: 1,
+          max: 5,
+        },
+      ],
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+    const { data } = await alert.onDidDismiss();
+    const {Calificacion} = data.values;
+    if (data && data.values){
+           
+      var Califica = {
+        Id_EstudianteRegis: this.Estudiante[0],
+        Id_ProfesRegis: Profesional.Id_ProfesRegis,
+        Calificacion: parseInt(Calificacion)
+      }
+
+      this.calService.postCalificar(Califica)
+      .subscribe( resp => {
+        console.log(resp);
+      });
+    }
   }
 }
 

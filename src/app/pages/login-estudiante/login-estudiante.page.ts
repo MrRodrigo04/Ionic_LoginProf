@@ -56,10 +56,12 @@ export class LoginEstudiantePage implements OnInit {
       const resp = await firstValueFrom(this.estService.loginEstudiante(logEstudiante));//llamada y transformación del servicio
 
       if(resp.Usuario && resp.Contra){//¿La respuesta tiene estos campos?
-
-        //Borrado de campos
-        this.formLoginEstudiante.reset();
-        this.navCtrl.navigateForward('/seleccion-chat'); //Si es así, redirección a pagina
+        
+        let estu = [resp.Id_EstudianteRegis,resp.Usuario];
+        //Guardar usuario en local storage
+        localStorage.setItem('estu', JSON.stringify(estu));
+        this.navCtrl.navigateForward('tab-estu/seleccion-chat'); //Navegar a siguiente pagina
+        this.formLoginEstudiante.reset(); //Resetear campos de login
 
       }else{
         throw new Error('Usuario no encontrado');

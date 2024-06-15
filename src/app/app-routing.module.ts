@@ -36,13 +36,22 @@ const routes: Routes = [
     loadChildren: () => import('./pages/logup-profesional/logup-profesional.module').then( m => m.LogupProfesionalPageModule)
   },
   {
-    path: 'seleccion-chat',
-    loadChildren: () => import('./pages/seleccion-chat_A/seleccion-chat.module').then( m => m.SeleccionChatPageModule)
+    path: 'chat-room',
+    loadChildren: () => import('./pages/chat-room/chat-room.module').then( m => m.ChatRoomPageModule)
   },
   {
-    path: 'chat-pendiente',
-    loadChildren: () => import('./pages/chat-pendiente_P/chat-pendiente.module').then( m => m.ChatPendientePageModule)
+    path: 'tab-estu',
+    loadChildren: () => import('./pages/tab-estu/tab-estu.module').then( m => m.TabEstuPageModule)
   },
+  {
+    path: 'tab-profes',
+    loadChildren: () => import('./pages/tab-profes/tab-profes.module').then( m => m.TabProfesPageModule)
+  },  {
+    path: 'diagnostico',
+    loadChildren: () => import('./pages/diagnostico/diagnostico.module').then( m => m.DiagnosticoPageModule)
+  },
+
+
 ];
 
 @NgModule({

@@ -59,9 +59,11 @@ export class LoginProfesionalPage implements OnInit {
 
       if(resp.Correo && resp.Usuario && resp.Contra){//¿La respuesta tiene estos campos?
 
+        let pro = [resp.Id_ProfesRegis,resp.Usuario];
         //Borrado de campos
+        localStorage.setItem('pro',JSON.stringify(pro));
+        this.navCtrl.navigateForward('tab-profes/chat-pendiente'); //Si es así, redirección a pagina
         this.formLoginProfesional.reset();
-        this.navCtrl.navigateForward('/chat-pendiente'); //Si es así, redirección a pagina
         
       }else{
         throw new Error('Usuario no encontrado');
