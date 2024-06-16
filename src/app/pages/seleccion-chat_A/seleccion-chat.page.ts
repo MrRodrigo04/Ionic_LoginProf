@@ -61,7 +61,7 @@ export class SeleccionChatPage implements OnInit {
   
   async presentActionSheet(Profesional: ProfesionalResponse) {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Actions',
+      header: 'Seleccione',
       buttons: [
         {
           text: 'Iniciar chat',

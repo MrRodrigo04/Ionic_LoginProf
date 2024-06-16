@@ -56,7 +56,7 @@ export class ChatPendientePage implements OnInit {
 
   async presentActionSheet(estudiante: EstudianteResponse) {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Actions',
+      header: 'Seleccione',
       buttons: [
         {
           text: 'Iniciar chat',
