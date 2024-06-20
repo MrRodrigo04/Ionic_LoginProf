@@ -12,24 +12,21 @@
 <ion-content>
   <ion-grid>
     <ion-row *ngFor="let message of messages">
-
       <ion-col size="9" *ngIf="message.from !== nickname" class="message"
                [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
         <span class="user_name">{{ message.from }}:</span><br>
         <span>{{ message.text }}</span>
-        <div class="time">{{message.created | date:'hh:mm a'}}</div>
+        <div class="time">{{ message.created | date:'hh:mm a' }}</div>
       </ion-col>
 
       <ion-col offset="3" size="9" *ngIf="message.from === nickname" class="message"
                [ngClass]="{'my_message': message.from === nickname, 'other_message': message.from !== nickname}">
         <span class="user_name">{{ message.from }}:</span><br>
         <span>{{ message.text }}</span>
-        <div class="time">{{message.created | date:'hh:mm a'}}</div>
+        <div class="time">{{ message.created | date:'hh:mm a' }}</div>
       </ion-col>
-
     </ion-row>
   </ion-grid>
-
 </ion-content>
 
 <ion-footer>
@@ -42,7 +39,7 @@
       </ion-col>
       <ion-col size="3">
         <ion-button clear color="primary" (click)="sendMessage()" [disabled]="!message">
-          Enviar
+          <ion-icon slot="icon-only" name="send"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>

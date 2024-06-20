@@ -1,56 +1,52 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>LoginProfesional</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">LoginProfesional</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <video autoplay muted loop id="video-background" preload="auto">
+    <source src="../assets/Videos/fondo8.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+  </video>
 
-  <form [formGroup]="formLoginProfesional">
-    <br>
-    <ion-list>
-            
-      <ion-item>
-        <ion-input 
-          formControlName="correo"
-          label="Correo"
-          type="email"
-          fill="solid"
-          labelPlacement="floating"
-          email>
-        </ion-input>
-      </ion-item>
-     
-      <ion-item>
-        <ion-input 
-          formControlName="usuario"
-          label="Usuario"
-          fill="solid"
-          labelPlacement="floating"
-          placeholder="Ingrese su usuario">
-        </ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-input 
-          formControlName="password"
-          label="Contraseña"
-          type="password"
-          fill="solid"
-          labelPlacement="floating"
-          placeholder="Ingrese su contraseña">
-        </ion-input>
-      </ion-item>
-
-    </ion-list>
-
-  </form><br>
-
-  <ion-button (click)="goToChatPendiente()">Ingresar</ion-button>
-
+  <div class="overlay">
+    <ion-header collapse="condense">
+      <ion-toolbar>
+        <ion-title size="large">LoginProfesional</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    
+    <div class="form-container">
+      <form [formGroup]="formLoginProfesional">
+        <br>
+        
+        <ion-item>
+          <ion-input 
+            formControlName="correo"
+            label="Correo"
+            type="email"
+            labelPlacement="floating"
+            email>
+          </ion-input>
+        </ion-item>
+       
+        <ion-item>
+          <ion-input 
+            formControlName="usuario"
+            label="Usuario"
+            labelPlacement="floating"
+            placeholder="Ingrese su usuario">
+          </ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-input 
+            formControlName="password"
+            label="Contraseña"
+            type="password"
+            labelPlacement="floating"
+            placeholder="Ingrese su contraseña">
+          </ion-input>
+        </ion-item>
+      </form>
+      <br>
+  
+      <ion-button expand="block" (click)="goToChatPendiente()">Ingresar</ion-button>
+    </div>
+  </div>
 </ion-content>
