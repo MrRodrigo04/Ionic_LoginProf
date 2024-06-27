@@ -50,18 +50,20 @@ export class SeleccionChatPage implements OnInit {
         progressBar.value = 1;
         clearInterval(intervalId);
         setTimeout(() => {
-          progressBar.classList.add('hidden');
+          progressBar.style.opacity = '0';
+          setTimeout(() => {
+            progressBar.style.display = 'none';
+          }, 500); // Delay to hide after fading out
         }, 500); // Delay to show 100% before hiding
       } else {
         progressBar.value = progress / 100;
       }
     }, interval);
   }
-
   
   async presentActionSheet(Profesional: ProfesionalResponse) {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Actions',
+      header: 'Acciones',
       buttons: [
         {
           text: 'Iniciar chat',

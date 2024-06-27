@@ -16,21 +16,22 @@ z-index: 1; /* Ensure the content is in front of the video */
 }
 
 .button-container {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-height:100%;
-position: relative;
-z-index: 1;
-margin-top: 25vh; /* Ajusta la distancia desde la parte superior */
-}
-
-.button-container ion-button {
-margin: 20px;
-width: 65%;
-}
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: fixed; /* Make the buttons stay in place */
+    z-index: 1;
+    margin-top: 22vh; /* Ajusta la distancia desde la parte superior */
+    left: 25%; /* Ajusta esta propiedad para mover los botones a la derecha */
+  }
+  
+  .button-container ion-button {
+    margin: 20px;
+    width: 120%;
+  }
+  
 .button-container ion-button.button-solid {
 --background: rgb(52, 48, 165) !important; /* Sobrescribe el color de fondo a rojo */
 --color: white !important; /* Sobrescribe el color del texto a blanco */

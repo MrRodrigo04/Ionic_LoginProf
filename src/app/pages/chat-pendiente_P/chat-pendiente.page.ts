@@ -22,16 +22,17 @@ export class ChatPendientePage implements OnInit {
   ) {}
 
   ngOnInit() {
-    //Obtener profesional logueado
+    // Obtener profesional logueado
     const pro = localStorage.getItem('pro');
     if (pro){
       this.Profesional = JSON.parse(pro);
     }
 
-    //Servicio para listar estudiantes registrados
-    this.estService.getEstudiantes()
-      .subscribe(estudiantes => this.estudiantes.push(...estudiantes));
-    this.startProgressBar(5);
+    // Servicio para listar estudiantes registrados
+    this.estService.getEstudiantes().subscribe(estudiantes => {
+      this.estudiantes.push(...estudiantes);
+      this.startProgressBar(5); // Iniciar la barra de progreso después de obtener los estudiantes
+    });
   }
 
   startProgressBar(duration: number) {
@@ -46,7 +47,10 @@ export class ChatPendientePage implements OnInit {
         progressBar.value = 1;
         clearInterval(intervalId);
         setTimeout(() => {
-          progressBar.classList.add('hidden');
+          progressBar.style.opacity = '0';
+          setTimeout(() => {
+            progressBar.style.display = 'none';
+          }, 500); // Delay to hide after fading out
         }, 500); // Delay to show 100% before hiding
       } else {
         progressBar.value = progress / 100;
@@ -56,7 +60,7 @@ export class ChatPendientePage implements OnInit {
 
   async presentActionSheet(estudiante: EstudianteResponse) {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Actions',
+      header: 'Seleccione',
       buttons: [
         {
           text: 'Iniciar chat',
@@ -85,20 +89,20 @@ export class ChatPendientePage implements OnInit {
 
   startChat(estudiante: EstudianteResponse) {
     // Lógica para iniciar chat
-    localStorage.setItem('user-chat',JSON.stringify(this.Profesional[1]));
+    localStorage.setItem('user-chat', JSON.stringify(this.Profesional[1]));
     this.socket.connect();
-    this.socket.emit('set-nickname', this.Profesional[1])
+    this.socket.emit('set-nickname', this.Profesional[1]);
     this.navCtrl.navigateForward('chat-room');
-    console.log("Pro ID: ",this.Profesional[0]);
+    console.log("Pro ID: ", this.Profesional[0]);
     console.log('Iniciar chat con:', estudiante);
   }
 
   diagnose(estudiante: EstudianteResponse) {
-    //Obtener información de estudiante a diagnosticar
-    let estu = [estudiante.Id_EstudianteRegis,estudiante.Usuario];
+    // Obtener información de estudiante a diagnosticar
+    let estu = [estudiante.Id_EstudianteRegis, estudiante.Usuario];
     localStorage.setItem('estuTemp', JSON.stringify(estu));
 
-    //Redirección a apartado para diágnostico
+    // Redirección a apartado para diagnóstico
     this.navCtrl.navigateForward('diagnostico');
 
     console.log('Diagnosticar a:', estudiante);
