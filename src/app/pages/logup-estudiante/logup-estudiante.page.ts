@@ -20,6 +20,7 @@ export class LogupEstudiantePage implements OnInit {
     public fb: FormBuilder
   ) { 
     this.formLogupEstudiante = this.fb.group({
+      'idUcv': new FormControl("",Validators.required),
       'usuario': new FormControl("",Validators.required),
       'password': new FormControl("",Validators.required),
       'correo': new FormControl(null,Validators.email),
@@ -48,6 +49,7 @@ export class LogupEstudiantePage implements OnInit {
 
     //Creación de JSON para nuevo estudiante
     var estudiante = {
+      idUcv_estu: form.idUcv,
       Correo: form.correo,
       Usuario: form.usuario,
       Contra: form.password,
@@ -60,13 +62,13 @@ export class LogupEstudiantePage implements OnInit {
       console.log(resp);
     })
 
-    //TOAST de confirmación
-    const toast = await this.toastCtrl.create({
-      message: 'Se registró correctamente',
-      duration: 1500,
-      position: 'bottom'
+    //Alerta de confirmación
+    const alert2 = await this.alertCrl.create({
+      header: 'Se registró correctamente',
+      message: 'Para mayor anónimato, solo se usará como identificador al usuario colocado',
+      buttons: ['Aceptar']
     });
-    await toast.present();
+    await alert2.present();
 
     //Redirección a HOME
     this.navCtrl.navigateBack('/home');
