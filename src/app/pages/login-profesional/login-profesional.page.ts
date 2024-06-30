@@ -21,7 +21,6 @@ export class LoginProfesionalPage implements OnInit {
     public fb: FormBuilder
   ) {
     this.formLoginProfesional = this.fb.group({
-      'correo': new FormControl("",Validators.required),
       'usuario': new FormControl("",Validators.required),
       'password': new FormControl("",Validators.required)
     })
@@ -48,7 +47,6 @@ export class LoginProfesionalPage implements OnInit {
 
     //Creación de estructura JSON para login
     var logProfesional = {
-      Correo: form.correo,
       Usuario:  form.usuario,
       Contra: form.password
     }
@@ -57,7 +55,7 @@ export class LoginProfesionalPage implements OnInit {
     try{
       const resp = await firstValueFrom(this.profService.loginProfesional(logProfesional));//llamada y transformación del servicio
 
-      if(resp.Correo && resp.Usuario && resp.Contra){//¿La respuesta tiene estos campos?
+      if(resp.Usuario && resp.Contra){//¿La respuesta tiene estos campos?
 
         let pro = [resp.Id_ProfesRegis,resp.Usuario];
         //Borrado de campos
