@@ -11,14 +11,7 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'logup',
-    loadChildren: () => import('./pages/logup/logup.module').then( m => m.LogupPageModule)
-  },
+
   {
     path: 'login-estudiante',
     loadChildren: () => import('./pages/login-estudiante/login-estudiante.module').then( m => m.LoginEstudiantePageModule)
@@ -46,7 +39,8 @@ const routes: Routes = [
   {
     path: 'tab-profes',
     loadChildren: () => import('./pages/tab-profes/tab-profes.module').then( m => m.TabProfesPageModule)
-  },  {
+  },
+  {
     path: 'diagnostico',
     loadChildren: () => import('./pages/diagnostico/diagnostico.module').then( m => m.DiagnosticoPageModule)
   },
