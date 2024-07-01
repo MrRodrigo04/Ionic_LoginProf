@@ -12,7 +12,7 @@ import { firstValueFrom , throwError } from 'rxjs';
 export class LoginProfesionalPage implements OnInit {
 
   formLoginProfesional: FormGroup;
-  
+
   constructor(
     private navCtrl: NavController,
     private profService: ProfesionalService,

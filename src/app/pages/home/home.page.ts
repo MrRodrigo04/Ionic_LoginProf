@@ -16,11 +16,11 @@ export class HomePage {
   ) {}
 
   goToLogin(){
-    this.navCtrl.navigateForward('/login');
+    this.navCtrl.navigateForward('/login-profesional');
   }
 
   goToLogup(){
-    this.navCtrl.navigateForward('/logup');
+    this.navCtrl.navigateForward('/logup-profesional');
   }
 
 

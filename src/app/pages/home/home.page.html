@@ -1,15 +1,14 @@
 <ion-content [fullscreen]="true">
-  <video autoplay muted loop id="video-background" preload="auto">
-    <source src="../assets/Videos/fondo1.mp4" type="video/mp4">
-    Tu navegador no soporta la etiqueta de video.
-  </video>
-  
+  <img src="../assets/icon/FondoPrueba1.png" alt="Fondo de prueba" class="background-image">
 
+  <!-- Contenido dentro de ion-content -->
   <div class="button-container">
     <ion-button expand="block" (click)="goToLogin()">Iniciar sesión</ion-button>
-    <ion-button expand="block" (click)="goToLogup()">Registrarte</ion-button>
+    <ion-button expand="block" (click)="goToLogup()">Registrarse</ion-button>
   </div>
-  
+
+  <!-- Aquí puedes colocar el resto del contenido que pertenece a ion-content si es necesario -->
+
   <!-- <ion-grid>
     <ion-row>
       <ion-col *ngFor = "let estudiante of estudiantes; let i = index">
