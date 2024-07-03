@@ -36,7 +36,7 @@ ion-content {
   top: 80%; /* Centra verticalmente */
   transform: translateY(-50%); /* Centra verticalmente */
   width: 80%; /* Ocupa todo el ancho */
-  right: -5px;
+  right: -7px;
   }
   
   
@@ -46,14 +46,14 @@ ion-content {
     
   }
   ion-item:first-of-type {
-    margin-top: 40px; /* Añadir más margen superior al primer campo */
+    margin-top: -50px; /* Añadir más margen superior al primer campo */
   }
   ion-item {
     --background: transparent; /* Fondo transparente para los items */
     --color: #000266; /* Color del texto */
     --placeholder-color: #00056c; /* Color del placeholder */
     border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* Borde inferior para separar los ítems */
-    margin-bottom: 10px; /* Espaciado entre los items */
+    margin-bottom: 20px; /* Espaciado entre los items */
     font-weight: bold;
   }
   
@@ -64,7 +64,7 @@ ion-content {
   }
   
   ion-button {
-    margin-top: 20px;
+    margin-top: 10px;
     --background: rgba(52, 48, 165, 0) !important;
     --color: rgb(0, 0, 79) !important;
     transition: background-color 0.3s ease; /* Transición suave */
