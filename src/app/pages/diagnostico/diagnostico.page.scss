@@ -5,9 +5,28 @@
     margin-bottom: 20px;
   }
 
+  ion-header {
+    --background: #00000000; /* Fondo negro puro */
+    color: rgb(0, 0, 0); /* Color del texto blanco para mejor contraste */
+  }
+  
   ion-title {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 0 auto; /* Centrar el título en la cabecera */
+    color: rgb(0, 0, 0);
+  }
+
+  ion-toolbar{
+    --background: #00000000; /* Fondo negro puro */
+  }
+  
+  ion-item  {
+    --background: #83081400;
+    --color: #000000;
+  }
+  
+  .custom-background {
+    --background: url('../../../../src/assets/icon/FondoPrueba7.png') no-repeat center center fixed;
+    --background-size: cover;
   }
   
   /* Estilo personalizado para los inputs y textarea */
@@ -23,8 +42,8 @@
   
   /* Estilo personalizado para el botón */
   .custom-button {
-    --background: #830815; /* Color de fondo rojo */
-    --color: #fff; /* Color de texto blanco */
+    --background: #83081400; /* Color de fondo rojo */
+    --color: #000000; /* Color de texto blanco */
     --border-radius: 5px; /* Borde redondeado */
     width: 45%; /* Ancho del botón al 45% */
     margin-left: 60%; /* Margen izquierdo para ajustar la posición a la derecha */
@@ -36,6 +55,6 @@
   }
   
   .custom-button:hover {
-    --background: #000; /* Color de fondo negro al pasar el ratón */
+    --background: #000756; /* Color de fondo negro al pasar el ratón */
   }
   
