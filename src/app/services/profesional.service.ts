@@ -26,6 +26,21 @@ export class ProfesionalService {
     return this.http.post<ProfesionalResponse>('http://localhost:3000/profesional/login',profLogin);
   }
 
+  getById(id: number): Observable<ProfesionalResponse>{
+    return this.http.get<ProfesionalResponse>
+    (`http://localhost:3000/profesional/${id}`);
+  }
+
+  getByEmail(email: string): Observable<ProfesionalResponse>{
+    return this.http.get<ProfesionalResponse>
+    (`http://localhost:3000/profesional/newPass/${email}`);
+  }
+
+  updatePass(id: number, profesional: ProfesionalRequest): Observable<ProfesionalRequest>{
+    return this.http.patch<ProfesionalRequest>
+    (`http://localhost:3000/profesional/${id}`,profesional);
+  }
+
 
 
 }

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, input } from '@angular/core';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { ProfesionalService } from 'src/app/services/profesional.service';
 import { firstValueFrom , throwError } from 'rxjs';
+import { ProfesionalResponse } from 'src/app/interfaces/intProfesional/ProfesionalResponse';
 
 @Component({
   selector: 'app-login-profesional',
@@ -12,6 +13,15 @@ import { firstValueFrom , throwError } from 'rxjs';
 export class LoginProfesionalPage implements OnInit {
 
   formLoginProfesional: FormGroup;
+  Profesional: ProfesionalResponse ={
+    Id_ProfesRegis: 0,
+    Nombre: '',
+    Apellido: '',
+    Correo: '',
+    Especialidad: '',
+    Usuario: '',
+    Contra: ''
+  }
 
   constructor(
     private navCtrl: NavController,
@@ -79,6 +89,67 @@ export class LoginProfesionalPage implements OnInit {
       //Borrado de campos
       this.formLoginProfesional.reset();
     }
+  }
+
+  async newPass(){
+    
+    const alert = await this.alertCrl.create({
+      header: 'Seguridad',
+      inputs: [
+        {
+          name: 'Email',
+          placeholder: 'Verifique correo',
+        },
+        {
+          name: 'passNueva',
+          type: 'password',
+          placeholder: 'Ingrese nueva contraseña',
+        },
+    ],
+    buttons: [
+      {
+        text: 'OK',
+        handler: async (data) => {
+          const EmailConf = data.Email
+          try{
+            const pro = await firstValueFrom(this.profService.getByEmail(EmailConf))
+            this.Profesional = {...pro};
+            if(EmailConf === pro.Correo){
+              this.changePassword(data.passNueva); 
+              this.showToast('Contraseña cambiada con éxito')
+              return true; 
+            }else{
+              this.showToast('No existe tal correo');
+              return false;
+            }
+          }catch (error){
+            this.showToast('Correo no encontrado');
+            console.log(error);
+            return false;
+          }
+        }
+      }
+    ]
+    });
+    await alert.present(); 
+  }
+
+  async showToast(msg: string){
+    const toast = await this.toastCtrl.create({
+      message: msg,
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async changePassword(passNueva: string){
+    //Hacer "copia" de estudiante, cambiando solo "Contra"
+    let newPro = {
+      ...this.Profesional,
+      Contra: passNueva
+    }
+    this.profService.updatePass(newPro.Id_ProfesRegis,newPro)
+    .subscribe(resp => console.log(resp))
   }
 
 }
