@@ -92,7 +92,7 @@ export class LoginProfesionalPage implements OnInit {
   }
 
   async newPass(){
-    
+ 
     const alert = await this.alertCrl.create({
       header: 'Seguridad',
       inputs: [
@@ -133,7 +133,6 @@ export class LoginProfesionalPage implements OnInit {
     });
     await alert.present(); 
   }
-
   async showToast(msg: string){
     const toast = await this.toastCtrl.create({
       message: msg,
@@ -141,7 +140,6 @@ export class LoginProfesionalPage implements OnInit {
     });
     toast.present();
   }
-
   async changePassword(passNueva: string){
     //Hacer "copia" de estudiante, cambiando solo "Contra"
     let newPro = {

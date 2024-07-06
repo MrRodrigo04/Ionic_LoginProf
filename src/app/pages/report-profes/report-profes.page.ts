@@ -12,7 +12,8 @@ export class ReportProfesPage implements OnInit {
 
   formReporPro: FormGroup;
   public Profesional = [];
-  asuntos = ['Chantaje', 'Información errónea', 'Trato inadecuado', 'Demora de atención', 'Experiencia de usuario deficiente'];
+  asuntos = ['Chantaje', 'Información errónea', 'Trato inadecuado',
+ 'Demora de atención', 'Experiencia de usuario deficiente'];
   isOtro = false;
 
   constructor(

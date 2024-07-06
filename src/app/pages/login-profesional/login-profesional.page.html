@@ -19,22 +19,22 @@
             placeholder="Ingrese su usuario">
           </ion-input>
         </ion-item>
-  
         <ion-item>
           <ion-input 
             formControlName="password"
             label="Contraseña"
-            type="password"
+            type="password"   
             labelPlacement="floating"
             placeholder="Ingrese su contraseña">
           </ion-input>
         </ion-item>
       </form>
-      <ion-text color="primary" (click)="newPass()" style="cursor: pointer; display: block;">
+      <ion-text color="primary" (click)="newPass()" 
+      style="cursor: pointer; display: block;">
         ¿Olvidaste tu contraseña?
       </ion-text>
-  
-      <ion-button expand="block" (click)="goToChatPendiente()">Ingresar</ion-button>
+      <ion-button expand="block" (click)="goToChatPendiente()">Ingresar
+      </ion-button>
     </div>
   </div>
 </ion-content>
