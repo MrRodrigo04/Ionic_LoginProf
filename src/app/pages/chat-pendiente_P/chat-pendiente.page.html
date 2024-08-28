@@ -7,17 +7,10 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="custom-background">
-  <ion-toolbar >
-    <!-- Aquí se coloca la imagen tipo banner -->
-    <img src="../assets/icon/prueba3.png" class="banner-image" />
-  </ion-toolbar>
+
 
   <ion-list>
-    <!-- Filas de conversaciones con imagen por defecto -->
     <ion-item *ngFor="let estudiante of estudiantes" lines="none" button (click)="presentActionSheet(estudiante)">
-      <ion-thumbnail slot="start">
-        <img src="https://ionicframework.com/docs/img/demos/thumbnail.svg" alt="Profile Picture" />
-      </ion-thumbnail>
       <ion-label>
         <h2>{{ estudiante.Usuario }}</h2>
         <p>{{ estudiante.Correo }}</p>
