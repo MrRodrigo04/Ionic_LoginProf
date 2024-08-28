@@ -1,15 +1,5 @@
 ion-content {
-  --background: none; /* Remueve cualquier fondo por defecto de ion-content */
-}
-
-.background-image {
-  width: 100%;
-  height: 100%; /* Ajusta al tamaño completo del contenido */
-  object-fit: cover; /* Ajusta la imagen para cubrir completamente el contenedor */
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
+--background: linear-gradient(to bottom, #f5f5dc, #d4b483);     
 }
 
 .button-container {
@@ -35,7 +25,7 @@ ion-content {
 .button-container ion-button.button-solid {
   --background: rgba(52, 48, 165, 0) !important;
   --color: rgb(0, 0, 0) !important;
-  transition: background-color 0.3s ease; /* Transición suave */
+  transition: background-color 0.3s ease; 
 }
 
 .button-container ion-button.button-solid:hover {
