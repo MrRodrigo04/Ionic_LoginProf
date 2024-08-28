@@ -18,7 +18,7 @@ export class ChatPendientePage implements OnInit {
     private navCtrl: NavController,
     private estService: EstudianteService,
     private socket: Socket,
-    private actionSheetCtrl: ActionSheetController
+    private actSheCtrl: ActionSheetController
   ) {}
 
   ngOnInit() {
@@ -31,35 +31,35 @@ export class ChatPendientePage implements OnInit {
     // Servicio para listar estudiantes registrados
     this.estService.getEstudiantes().subscribe(estudiantes => {
       this.estudiantes.push(...estudiantes);
-      this.startProgressBar(5); // Iniciar la barra de progreso después de obtener los estudiantes
+      this.barraLoad(5);
     });
   }
 
-  startProgressBar(duration: number) {
-    const progressBar = document.getElementById('progress-bar') as HTMLIonProgressBarElement;
-    let progress = 0;
-    const interval = 100; // 100ms interval
-    const increment = (interval / (duration * 1000)) * 100;
+  barraLoad(duracion: number) {
+    const barra = document.getElementById('progress-bar') as HTMLIonProgressBarElement;
+    let progreso = 0;
+    const intervalo = 100; // 100ms interval
+    const incremento = (intervalo / (duracion * 1000)) * 100;
 
-    const intervalId = setInterval(() => {
-      progress += increment;
-      if (progress >= 100) {
-        progressBar.value = 1;
-        clearInterval(intervalId);
+    const idIntervalo = setInterval(() => {
+      progreso += incremento;
+      if (progreso >= 100) {
+        barra.value = 1;
+        clearInterval(idIntervalo);
         setTimeout(() => {
-          progressBar.style.opacity = '0';
+          barra.style.opacity = '0';
           setTimeout(() => {
-            progressBar.style.display = 'none';
+            barra.style.display = 'none';
           }, 500); // Delay to hide after fading out
         }, 500); // Delay to show 100% before hiding
       } else {
-        progressBar.value = progress / 100;
+        barra.value = progreso / 100;
       }
-    }, interval);
+    }, intervalo);
   }
 
-  async presentActionSheet(estudiante: EstudianteResponse) {
-    const actionSheet = await this.actionSheetCtrl.create({
+  async mostrarActionSheet(estudiante: EstudianteResponse) {
+    const actionSheet = await this.actSheCtrl.create({
       header: 'Seleccione',
       buttons: [
         {
@@ -93,8 +93,6 @@ export class ChatPendientePage implements OnInit {
     this.socket.connect();
     this.socket.emit('set-nickname', this.Profesional[1]);
     this.navCtrl.navigateForward('chat-room');
-    console.log("Pro ID: ", this.Profesional[0]);
-    console.log('Iniciar chat con:', estudiante);
   }
 
   diagnose(estudiante: EstudianteResponse) {
@@ -104,7 +102,5 @@ export class ChatPendientePage implements OnInit {
 
     // Redirección a apartado para diagnóstico
     this.navCtrl.navigateForward('diagnostico');
-
-    console.log('Diagnosticar a:', estudiante);
   }
 }
