@@ -10,7 +10,7 @@
   <form [formGroup]="formReporPro" class="ion-padding">
     <ion-item>
       <ion-label position="stacked">Asunto</ion-label>
-      <ion-select formControlName="asunto" (ionChange)="checkAsunto($event)">
+      <ion-select formControlName="asunto" (ionChange)="evaluarAsunto($event)">
         <ion-select-option *ngFor="let asunto of asuntos" [value]="asunto">{{ asunto }}</ion-select-option>
         <ion-select-option value="otro">Otro</ion-select-option>
       </ion-select>

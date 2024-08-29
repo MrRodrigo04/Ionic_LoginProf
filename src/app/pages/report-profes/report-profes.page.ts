@@ -36,7 +36,7 @@ export class ReportProfesPage implements OnInit {
     }
   }
 
-  checkAsunto(event: any) {
+  evaluarAsunto(event: any) {
     this.isOtro = event.detail.value === 'otro';
     if (this.isOtro) {
       this.formReporPro.get('otroAsunto')?.setValidators(Validators.required);
