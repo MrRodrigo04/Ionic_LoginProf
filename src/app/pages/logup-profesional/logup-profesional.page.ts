@@ -17,9 +17,9 @@ export class LogupProfesionalPage implements OnInit {
     private profService: ProfesionalService,
     public alertCrl: AlertController,
     private toastCtrl: ToastController,
-    public fb: FormBuilder
+    public fB: FormBuilder
   ) { 
-    this.formLogupProfesional = this.fb.group({
+    this.formLogupProfesional = this.fB.group({
       'nombres': new FormControl("",Validators.required),
       'apellidos': new FormControl("",Validators.required),
       'correo': new FormControl("",Validators.required),
@@ -74,7 +74,6 @@ export class LogupProfesionalPage implements OnInit {
 
     //Redirección a HOME
     this.navCtrl.navigateBack('/home');
-    /*nuevo cambio*/
   }
 
 }

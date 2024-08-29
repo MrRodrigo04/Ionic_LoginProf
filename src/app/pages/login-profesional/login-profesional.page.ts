@@ -1,8 +1,8 @@
-import { Component, OnInit, input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { ProfesionalService } from 'src/app/services/profesional.service';
-import { firstValueFrom , throwError } from 'rxjs';
+import { firstValueFrom} from 'rxjs';
 import { ProfesionalResponse } from 'src/app/interfaces/intProfesional/ProfesionalResponse';
 
 @Component({
@@ -28,9 +28,9 @@ export class LoginProfesionalPage implements OnInit {
     private profService: ProfesionalService,
     public alertCrl: AlertController,
     private toastCtrl: ToastController,
-    public fb: FormBuilder
+    public fB: FormBuilder
   ) {
-    this.formLoginProfesional = this.fb.group({
+    this.formLoginProfesional = this.fB.group({
       'usuario': new FormControl("",Validators.required),
       'password': new FormControl("",Validators.required)
     })
@@ -91,9 +91,9 @@ export class LoginProfesionalPage implements OnInit {
     }
   }
 
-  async newPass(){
+  async nuevaContra(){
  
-    const alert = await this.alertCrl.create({
+    const alerta = await this.alertCrl.create({
       header: 'Seguridad',
       inputs: [
         {
@@ -115,15 +115,15 @@ export class LoginProfesionalPage implements OnInit {
             const pro = await firstValueFrom(this.profService.getByEmail(EmailConf))
             this.Profesional = {...pro};
             if(EmailConf === pro.Correo){
-              this.changePassword(data.passNueva); 
-              this.showToast('Contraseña cambiada con éxito')
+              this.cambiarContra(data.passNueva); 
+              this.mostrarToast('Contraseña cambiada con éxito')
               return true; 
             }else{
-              this.showToast('No existe tal correo');
+              this.mostrarToast('No existe tal correo');
               return false;
             }
           }catch (error){
-            this.showToast('Correo no encontrado');
+            this.mostrarToast('Correo no encontrado');
             console.log(error);
             return false;
           }
@@ -131,16 +131,16 @@ export class LoginProfesionalPage implements OnInit {
       }
     ]
     });
-    await alert.present(); 
+    await alerta.present(); 
   }
-  async showToast(msg: string){
+  async mostrarToast(msg: string){
     const toast = await this.toastCtrl.create({
       message: msg,
       duration: 2000
     });
     toast.present();
   }
-  async changePassword(passNueva: string){
+  async cambiarContra(passNueva: string){
     //Hacer "copia" de estudiante, cambiando solo "Contra"
     let newPro = {
       ...this.Profesional,
